@@ -6,33 +6,39 @@ import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
-import AdbIcon from "@mui/icons-material/Adb";
+import Logo from "./logo";
 
-const pages = ["Products", "Pricing", "Blog"];
+const pages = ["Ingredients", "Tags"];
 
 interface DesktopNavBarProps {
-  handleCloseNavMenu: () => void;
+  handleIngredientsModal: () => void;
+  handleTagsModal: () => void;
 }
 
 interface MobileNavBarProps {
   handleOpenNavMenu: (event: React.MouseEvent<HTMLElement>) => void;
   handleCloseNavMenu: () => void;
   anchorElNav: HTMLElement | null;
+  handleIngredientsModal: () => void;
+  handleTagsModal: () => void;
 }
 
-export const DesktopNavBar = ({ handleCloseNavMenu }: DesktopNavBarProps) => {
+export const DesktopNavBar = ({
+  handleIngredientsModal,
+  handleTagsModal,
+}: DesktopNavBarProps) => {
   return (
     <>
       <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-        {pages.map((page) => (
-          <Button
-            key={page}
-            onClick={handleCloseNavMenu}
-            sx={{ my: 2, display: "block" }}
-          >
-            {page}
-          </Button>
-        ))}
+        <Button
+          onClick={handleIngredientsModal}
+          sx={{ mt: 2, display: "block" }}
+        >
+          Ingredients
+        </Button>
+        <Button onClick={handleTagsModal} sx={{ mt: 2, display: "block" }}>
+          Tags
+        </Button>
       </Box>
     </>
   );
@@ -42,6 +48,8 @@ export const MobileNavbar = ({
   handleCloseNavMenu,
   handleOpenNavMenu,
   anchorElNav,
+  handleIngredientsModal,
+  handleTagsModal,
 }: MobileNavBarProps) => {
   return (
     <>
@@ -79,14 +87,17 @@ export const MobileNavbar = ({
             display: { xs: "block", md: "none" },
           }}
         >
-          {pages.map((page) => (
-            <MenuItem key={page} onClick={handleCloseNavMenu}>
-              <Typography textAlign="center">{page}</Typography>
-            </MenuItem>
-          ))}
+          <MenuItem onClick={handleIngredientsModal}>
+            <Typography textAlign="center">Ingredients</Typography>
+          </MenuItem>
+          <MenuItem onClick={handleTagsModal}>
+            <Typography textAlign="center">Tags</Typography>
+          </MenuItem>
         </Menu>
       </Box>
-      <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
+      <Box sx={{ display: { xs: "flex", md: "none" }, mr: 1 }}>
+        <Logo />
+      </Box>
     </>
   );
 };

@@ -5,6 +5,7 @@ import Card from "./card";
 import Hero from "./hero";
 
 const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+const ingredients = ["a", "b", "c", "d"];
 
 const Recipes = () => {
   return (
