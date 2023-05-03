@@ -17,8 +17,7 @@ const Hero = () => {
     >
       <Container maxWidth="sm">
         <Typography
-          component="h1"
-          variant="h2"
+          variant="h1"
           align="center"
           color="text.primary"
           gutterBottom

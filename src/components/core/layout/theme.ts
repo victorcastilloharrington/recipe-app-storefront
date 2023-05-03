@@ -1,8 +1,8 @@
-import { Roboto } from 'next/font/google';
+import { Radio_Canada } from 'next/font/google';
 import { createTheme } from '@mui/material/styles';
-import { red } from '@mui/material/colors';
+import { red, orange } from '@mui/material/colors';
 
-export const roboto = Roboto({
+export const radioCanada = Radio_Canada({
   weight: ['300', '400', '500', '700'],
   subsets: ['latin'],
   display: 'swap',
@@ -13,17 +13,26 @@ export const roboto = Roboto({
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#556cd6',
+      main: orange[900],
     },
     secondary: {
-      main: '#19857b',
+      main: orange.A700,
     },
     error: {
       main: red.A400,
     },
   },
   typography: {
-    fontFamily: roboto.style.fontFamily,
+    fontFamily: radioCanada.style.fontFamily,
+    h1: {
+      fontWeight: 'bold'
+    },
+    h2: {
+      fontWeight: 'bold'
+    },
+    h3: {
+      fontWeight: 'bold'
+    }
   },
 });
 

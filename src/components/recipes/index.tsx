@@ -13,7 +13,7 @@ const Recipes = () => {
         <Hero />
         <Grid container spacing={4}>
           {cards.map((card) => (
-            <Card key={card} />
+            <Card id={card} key={card} />
           ))}
         </Grid>
       </Container>
