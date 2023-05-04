@@ -7,9 +7,10 @@ import {
   TextField,
   Typography,
   Link,
+  Avatar,
 } from "@mui/material";
 
-const CreateRecipeComponent = () => {
+const UserDetailsComponent = () => {
   return (
     <Box
       sx={{
@@ -19,9 +20,7 @@ const CreateRecipeComponent = () => {
         alignItems: "center",
       }}
     >
-      <Typography component="h1" variant="h3">
-        Sign up
-      </Typography>
+      <Avatar alt="Vemy Sharp" src="/static/images/avatar/1.jpg" />
       <Box component="form" noValidate sx={{ mt: 3 }}>
         <Grid container spacing={2}>
           <Grid item xs={12} sm={6}>
@@ -93,4 +92,4 @@ const CreateRecipeComponent = () => {
   );
 };
 
-export default CreateRecipeComponent;
+export default UserDetailsComponent;

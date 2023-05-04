@@ -10,8 +10,6 @@ const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 const Recipes = () => {
   return (
     <>
-      <Hero />
-
       <Container sx={{ py: 8 }} maxWidth="md">
         <Divider sx={{ marginBottom: 8 }}>
           <Typography variant="h3">Newest Recipes</Typography>
