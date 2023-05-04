@@ -7,7 +7,7 @@ import Avatar from "@mui/material/Avatar";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
+const settings = ["My Recipes", "Account", "Logout"];
 
 interface SidebarProps {
   handleOpenUserMenu: (event: React.MouseEvent<HTMLElement>) => void;
