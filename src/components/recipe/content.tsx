@@ -1,9 +1,9 @@
 import { Box, Container, Typography } from "@mui/material";
 
-const Content = () => {
+const RecipeContent = () => {
   return (
     <Box marginY={10}>
-      <Container max-width="sm" fixed>
+      <Container maxWidth="md" fixed>
         <Typography variant="body1">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
@@ -18,4 +18,4 @@ const Content = () => {
   );
 };
 
-export default Content;
+export default RecipeContent;

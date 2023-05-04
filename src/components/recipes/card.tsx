@@ -6,13 +6,21 @@ import CardMedia from "@mui/material/CardMedia";
 import Grid from "@mui/material/Grid";
 
 import Typography from "@mui/material/Typography";
-import { CardActionArea } from "@mui/material";
+import { Button, CardActionArea, CardActions } from "@mui/material";
 
 interface CardProps {
   id: number;
+  enableButtons?: boolean;
+  handleDeleteClick?: () => void;
+  handleEditClick?: () => void;
 }
 
-const CardComponent = ({ id }: CardProps) => {
+const CardComponent = ({
+  id,
+  enableButtons,
+  handleDeleteClick,
+  handleEditClick,
+}: CardProps) => {
   return (
     <Grid item key={id} xs={12} sm={6} md={4}>
       <Card
@@ -41,6 +49,12 @@ const CardComponent = ({ id }: CardProps) => {
               content.
             </Typography>
           </CardContent>
+          {enableButtons && (
+            <CardActions>
+              <Button size="small">Delete</Button>
+              <Button size="small">Edit</Button>
+            </CardActions>
+          )}
         </CardActionArea>
       </Card>
     </Grid>

@@ -1,17 +1,15 @@
 import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
 
-import Card from "./card";
-import Hero from "./hero";
+import Card from "../recipes/card";
+import Hero from "../recipes/hero";
 import { Divider, Typography } from "@mui/material";
 
 const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
-const Recipes = () => {
+const UserRecipes = () => {
   return (
     <>
-      <Hero />
-
       <Container sx={{ py: 8 }} maxWidth="md">
         <Divider sx={{ marginBottom: 8 }}>
           <Typography variant="h3">Newest Recipes</Typography>
@@ -26,4 +24,4 @@ const Recipes = () => {
   );
 };
 
-export default Recipes;
+export default UserRecipes;
