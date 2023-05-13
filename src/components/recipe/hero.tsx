@@ -5,26 +5,27 @@ import Stack from "@mui/material/Stack";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import Grid from "@mui/material/Grid";
 import { Divider, Paper } from "@mui/material";
-import { AccessTime } from "@mui/icons-material";
+import { AccessTime, AttachMoney } from "@mui/icons-material";
 
 interface RecipeDetailHeroProps {
   title: string;
   time: number;
   price: string;
+  image?: string;
 }
 
 const RecipeDetailHero: React.FC<RecipeDetailHeroProps> = ({
   title,
   time,
   price,
+  image,
 }) => {
   return (
     <Box
       sx={{
         py: 12,
-        backgroundImage: `url("/recipe_hero.jpg")`,
+        backgroundImage: `url("${image ? image : "/recipe_hero.jpg"}")`,
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
       }}
@@ -46,7 +47,7 @@ const RecipeDetailHero: React.FC<RecipeDetailHeroProps> = ({
               alignItems="center"
               display="flex"
             >
-              <AccessTime />
+              <AccessTime color="primary" />
               <Typography>{time}</Typography>
             </Box>
             <Box
@@ -55,17 +56,8 @@ const RecipeDetailHero: React.FC<RecipeDetailHeroProps> = ({
               alignItems="center"
               display="flex"
             >
-              <AccessTime />
+              <AttachMoney color="primary" />
               <Typography>{price}</Typography>
-            </Box>
-            <Box
-              flexDirection="column"
-              justifyContent="center"
-              alignItems="center"
-              display="flex"
-            >
-              <AccessTime />
-              <Typography>Item 1</Typography>
             </Box>
           </Stack>
         </Paper>

@@ -16,6 +16,7 @@ const RecipeDetailPage = (props: { recipe: RecipeDetailPageProps }) => {
         title={props.recipe.title}
         time={props.recipe.time_minutes}
         price={props.recipe.price}
+        image={props.recipe.image}
       />
       <RecipeContent description={props.recipe.description} />
     </>
