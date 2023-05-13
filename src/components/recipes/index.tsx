@@ -13,8 +13,9 @@ export interface RecipesComponentProps {
   title: string;
   time_minutes: number;
   price: string;
-  tags: [GenericRecipeProps];
-  Ingredients: [GenericRecipeProps];
+  image?: string;
+  tags?: [GenericRecipeProps];
+  Ingredients?: [GenericRecipeProps];
   link?: string;
 }
 const Recipes: FC<{ recipes: [RecipesComponentProps] }> = ({ recipes }) => {
@@ -31,6 +32,7 @@ const Recipes: FC<{ recipes: [RecipesComponentProps] }> = ({ recipes }) => {
               key={recipe.id}
               title={recipe.title}
               tags={recipe.tags}
+              image={recipe.image}
             />
           ))}
         </Grid>
