@@ -7,9 +7,11 @@ import Grid from "@mui/material/Grid";
 
 import Typography from "@mui/material/Typography";
 import { Button, CardActionArea, CardActions } from "@mui/material";
-
+import { GenericRecipeProps } from ".";
 interface CardProps {
   id: number;
+  title: string;
+  tags?: [GenericRecipeProps];
   enableButtons?: boolean;
   handleDeleteClick?: () => void;
   handleEditClick?: () => void;
@@ -17,6 +19,8 @@ interface CardProps {
 
 const CardComponent = ({
   id,
+  title,
+  tags,
   enableButtons,
   handleDeleteClick,
   handleEditClick,
@@ -42,12 +46,9 @@ const CardComponent = ({
           />
           <CardContent sx={{ flexGrow: 1 }}>
             <Typography gutterBottom variant="h5" component="h2">
-              Recipe Name
+              {title}
             </Typography>
-            <Typography>
-              This is a media card. You can use this section to describe the
-              content.
-            </Typography>
+            <Typography>{tags?.map((tag) => tag.name)}</Typography>
           </CardContent>
           {enableButtons && (
             <CardActions>
