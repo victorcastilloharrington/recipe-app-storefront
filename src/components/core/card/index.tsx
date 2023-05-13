@@ -7,9 +7,9 @@ import Grid from "@mui/material/Grid";
 
 import Typography from "@mui/material/Typography";
 import { Button, CardActionArea, CardActions, Chip } from "@mui/material";
-import { GenericRecipeProps } from "@components/recipes/";
+import { GenericRecipeProps } from "../../../pages/";
 import { Tag } from "@mui/icons-material";
-import Link from "next/link";
+
 interface CardProps {
   id: number;
   title: string;

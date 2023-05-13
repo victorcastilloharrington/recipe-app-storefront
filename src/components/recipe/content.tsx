@@ -1,11 +1,34 @@
-import { Box, Container, Typography } from "@mui/material";
+import { Box, Breadcrumbs, Container, Typography } from "@mui/material";
+import NextLink from "next/link";
+import { Link } from "@mui/material";
 import { FC } from "react";
 
-const RecipeContent: FC<{ description: string }> = ({ description }) => {
+const RecipeContent: FC<{ description: string; title: string }> = ({
+  description,
+  title,
+}) => {
   return (
-    <Box marginY={10}>
+    <Box marginTop={5} marginBottom={10}>
       <Container maxWidth="md" fixed>
-        <Typography variant="body1">{description}</Typography>
+        <Box marginY={4}>
+          <Breadcrumbs aria-label="breadcrumb">
+            <Link
+              component={NextLink}
+              underline="hover"
+              color="inherit"
+              href="/"
+            >
+              Home
+            </Link>
+            <Typography color="text.primary">{title}</Typography>
+          </Breadcrumbs>
+        </Box>
+        <Typography variant="h3" align="center" gutterBottom>
+          Recipe Instructions
+        </Typography>
+        <Typography component="body" variant="h6">
+          {description}
+        </Typography>
       </Container>
     </Box>
   );

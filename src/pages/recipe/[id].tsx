@@ -18,7 +18,10 @@ const RecipeDetailPage = (props: { recipe: RecipeDetailPageProps }) => {
         price={props.recipe.price}
         image={props.recipe.image}
       />
-      <RecipeContent description={props.recipe.description} />
+      <RecipeContent
+        description={props.recipe.description}
+        title={props.recipe.title}
+      />
     </>
   );
 };
@@ -29,7 +32,6 @@ export const getServerSideProps: GetServerSideProps<{
   const id = context.params?.id;
 
   const data = await ApiClient(`recipe/recipes/${id}`);
-  console.log(data);
 
   return { props: { recipe: data } };
 };
