@@ -9,6 +9,8 @@ import Typography from "@mui/material/Typography";
 import { Button, CardActionArea, CardActions, Chip } from "@mui/material";
 import { GenericRecipeProps } from ".";
 import { Tag } from "@mui/icons-material";
+import Link from "next/link";
+import CardComponent from "@components/core/card";
 interface CardProps {
   id: number;
   title: string;
@@ -19,7 +21,7 @@ interface CardProps {
   handleEditClick?: () => void;
 }
 
-const CardComponent = ({
+const RecipeCardComponent = ({
   id,
   title,
   tags,
@@ -29,48 +31,11 @@ const CardComponent = ({
   handleEditClick,
 }: CardProps) => {
   return (
-    <Grid item key={id} xs={12} sm={6} md={4}>
-      <Card
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-        }}
-      >
-        <CardActionArea>
-          <CardMedia
-            component="img"
-            sx={
-              {
-                // 16:9
-              }
-            }
-            image={image ? image : "/hero_background.jpg"}
-            alt="random"
-          />
-          <CardContent sx={{ flexGrow: 1 }}>
-            <Typography gutterBottom variant="h5" component="h2">
-              {title}
-            </Typography>
-            {tags?.map((tag) => (
-              <Chip
-                icon={<Tag />}
-                size="small"
-                variant="outlined"
-                label={tag.name}
-                key={tag.name}
-                onClick={() => {}}
-              />
-            ))}
-          </CardContent>
-          {enableButtons && (
-            <CardActions>
-              <Button size="small">Delete</Button>
-              <Button size="small">Edit</Button>
-            </CardActions>
-          )}
-        </CardActionArea>
-      </Card>
-    </Grid>
+    <Link href={`/recipe/${id}`}>
+      <Grid item key={id} xs={12} sm={6} md={4}>
+        <CardComponent id={id} title={title} tags={tags} image={image} />
+      </Grid>
+    </Link>
   );
 };
-export default CardComponent;
+export default RecipeCardComponent;
