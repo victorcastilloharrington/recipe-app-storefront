@@ -1,14 +1,8 @@
 import * as React from "react";
 
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
 import Grid from "@mui/material/Grid";
 
-import Typography from "@mui/material/Typography";
-import { Button, CardActionArea, CardActions, Chip } from "@mui/material";
-import { GenericRecipeProps } from ".";
-import { Tag } from "@mui/icons-material";
+import { GenericRecipeProps } from "@pages";
 import Link from "next/link";
 import CardComponent from "@components/core/card";
 interface CardProps {

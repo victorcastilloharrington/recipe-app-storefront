@@ -9,7 +9,17 @@ import Grid from "@mui/material/Grid";
 import { Divider, Paper } from "@mui/material";
 import { AccessTime } from "@mui/icons-material";
 
-const RecipeDetailHero = () => {
+interface RecipeDetailHeroProps {
+  title: string;
+  time: number;
+  price: string;
+}
+
+const RecipeDetailHero: React.FC<RecipeDetailHeroProps> = ({
+  title,
+  time,
+  price,
+}) => {
   return (
     <Box
       sx={{
@@ -22,7 +32,7 @@ const RecipeDetailHero = () => {
       <Container maxWidth="sm">
         <Paper elevation={4} sx={{ p: 4 }}>
           <Typography variant="h3" textAlign="center">
-            Recipe Title
+            {title}
           </Typography>
           <Stack
             direction="row"
@@ -37,7 +47,7 @@ const RecipeDetailHero = () => {
               display="flex"
             >
               <AccessTime />
-              <Typography>Item 1</Typography>
+              <Typography>{time}</Typography>
             </Box>
             <Box
               flexDirection="column"
@@ -46,7 +56,7 @@ const RecipeDetailHero = () => {
               display="flex"
             >
               <AccessTime />
-              <Typography>Item 1</Typography>
+              <Typography>{price}</Typography>
             </Box>
             <Box
               flexDirection="column"

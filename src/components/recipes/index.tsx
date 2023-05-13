@@ -5,19 +5,8 @@ import Card from "./card";
 import { Divider, Typography } from "@mui/material";
 import { FC } from "react";
 
-export interface GenericRecipeProps {
-  name: string;
-}
-export interface RecipesComponentProps {
-  id: number;
-  title: string;
-  time_minutes: number;
-  price: string;
-  image?: string;
-  tags?: [GenericRecipeProps];
-  Ingredients?: [GenericRecipeProps];
-  link?: string;
-}
+import { RecipesComponentProps } from "@pages";
+
 const Recipes: FC<{ recipes: [RecipesComponentProps] }> = ({ recipes }) => {
   return (
     <>
