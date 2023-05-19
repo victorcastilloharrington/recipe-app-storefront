@@ -2,11 +2,16 @@ import "../styles/globals.css";
 import Layout from "@components/core/layout";
 
 import type { AppProps } from "next/app";
+import AuthProvider from "../context/authContext";
 
-export default function App({ Component, pageProps }: AppProps) {
+const App = ({ Component, pageProps }: AppProps) => {
   return (
-    <Layout>
-      <Component {...pageProps} />
-    </Layout>
+    <AuthProvider>
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+    </AuthProvider>
   );
-}
+};
+
+export default App;

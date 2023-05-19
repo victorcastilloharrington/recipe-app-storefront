@@ -5,15 +5,9 @@ import {
   DialogActions,
   Button,
 } from "@mui/material";
-import { PropsWithChildren } from "react";
+import { ModalComponentProps } from "@typedefs/core";
 
-interface ModalProps extends PropsWithChildren {
-  open: boolean;
-  handleClose: () => void;
-  title: string;
-}
-
-const Modal = ({ open, handleClose, title, children }: ModalProps) => {
+const Modal = ({ title, children, open, handleClose }: ModalComponentProps) => {
   return (
     <Dialog maxWidth="lg" open={open} onClose={handleClose}>
       <DialogTitle>{title}</DialogTitle>

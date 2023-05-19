@@ -7,6 +7,7 @@ import Sidebar from "./sidebar";
 import { DesktopNavBar, MobileNavbar } from "./navbar";
 import Logo from "./logo";
 import Modal from "../modal";
+import { Typography } from "@mui/material";
 
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
@@ -84,10 +85,10 @@ function ResponsiveAppBar() {
         handleClose={handleIngredientsModal}
         title="Ingredients"
       >
-        Ingredients
+        <Typography>Ingredients</Typography>
       </Modal>
       <Modal open={openTags} handleClose={handleTagsModal} title="Tags">
-        TAGS
+        <Typography>Tags</Typography>
       </Modal>
     </AppBar>
   );

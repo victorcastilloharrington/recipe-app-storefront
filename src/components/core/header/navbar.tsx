@@ -7,21 +7,9 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import Logo from "./logo";
+import { DesktopNavBarProps, MobileNavBarProps } from "@typedefs/core";
 
 const pages = ["Ingredients", "Tags"];
-
-interface DesktopNavBarProps {
-  handleIngredientsModal: () => void;
-  handleTagsModal: () => void;
-}
-
-interface MobileNavBarProps {
-  handleOpenNavMenu: (event: React.MouseEvent<HTMLElement>) => void;
-  handleCloseNavMenu: () => void;
-  anchorElNav: HTMLElement | null;
-  handleIngredientsModal: () => void;
-  handleTagsModal: () => void;
-}
 
 export const DesktopNavBar = ({
   handleIngredientsModal,

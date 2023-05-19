@@ -1,13 +1,8 @@
 import RecipeContent from "@components/recipe/content";
 import RecipeDetailHero from "@components/recipe/hero";
 import { GetServerSideProps } from "next";
-import { RecipesComponentProps } from "..";
 import ApiClient from "../../services/api";
-import { FC } from "react";
-
-export interface RecipeDetailPageProps extends RecipesComponentProps {
-  description: string;
-}
+import { RecipeDetailPageProps } from "@typedefs/recipe";
 
 const RecipeDetailPage = (props: { recipe: RecipeDetailPageProps }) => {
   return (

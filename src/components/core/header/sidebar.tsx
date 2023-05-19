@@ -6,50 +6,58 @@ import Menu from "@mui/material/Menu";
 import Avatar from "@mui/material/Avatar";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-
-const settings = ["My Recipes", "Account", "Logout"];
-
-interface SidebarProps {
-  handleOpenUserMenu: (event: React.MouseEvent<HTMLElement>) => void;
-  handleCloseUserMenu: () => void;
-  anchorElUser: HTMLElement | null;
-}
+import AuthComponent from "@components/auth";
+import { SidebarProps } from "@typedefs/core";
+import { useAuth } from "@hooks/useAuth";
 
 const Sidebar = ({
   anchorElUser,
   handleOpenUserMenu,
   handleCloseUserMenu,
 }: SidebarProps) => {
-  return (
-    <Box sx={{ flexGrow: 0 }}>
-      <Tooltip title="Open settings">
-        <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-          <Avatar alt="Vemy Sharp" src="/static/images/avatar/1.jpg" />
-        </IconButton>
-      </Tooltip>
-      <Menu
-        sx={{ mt: "45px" }}
-        id="menu-appbar"
-        anchorEl={anchorElUser}
-        anchorOrigin={{
-          vertical: "top",
-          horizontal: "right",
-        }}
-        keepMounted
-        transformOrigin={{
-          vertical: "top",
-          horizontal: "right",
-        }}
-        open={Boolean(anchorElUser)}
-        onClose={handleCloseUserMenu}
-      >
-        {settings.map((setting) => (
-          <MenuItem key={setting} onClick={handleCloseUserMenu}>
-            <Typography textAlign="center">{setting}</Typography>
+  const { user, logout } = useAuth();
+
+  if (!user)
+    return (
+      <Box sx={{ flexGrow: 0 }}>
+        <AuthComponent />
+      </Box>
+    );
+  else
+    return (
+      <Box sx={{ flexGrow: 0 }}>
+        <Tooltip title="Open settings">
+          <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+            <Avatar alt={user.name} src="/static/images/avatar/1.jpg" />
+          </IconButton>
+        </Tooltip>
+        <Menu
+          sx={{ mt: "45px" }}
+          id="menu-appbar"
+          anchorEl={anchorElUser}
+          anchorOrigin={{
+            vertical: "top",
+            horizontal: "right",
+          }}
+          keepMounted
+          transformOrigin={{
+            vertical: "top",
+            horizontal: "right",
+          }}
+          open={Boolean(anchorElUser)}
+          onClose={handleCloseUserMenu}
+        >
+          <MenuItem key="recipes" onClick={handleCloseUserMenu}>
+            <Typography textAlign="center">My Recipes</Typography>
           </MenuItem>
-        ))}
-      </Menu>
-    </Box>
-  );
+          <MenuItem key="Account" onClick={handleCloseUserMenu}>
+            <Typography textAlign="center">My Account</Typography>
+          </MenuItem>
+          <MenuItem key="logout" onClick={logout}>
+            <Typography textAlign="center">Log Out</Typography>
+          </MenuItem>
+        </Menu>
+      </Box>
+    );
 };
 export default Sidebar;

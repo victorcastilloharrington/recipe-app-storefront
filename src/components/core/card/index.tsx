@@ -3,22 +3,11 @@ import * as React from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
-import Grid from "@mui/material/Grid";
 
 import Typography from "@mui/material/Typography";
 import { Button, CardActionArea, CardActions, Chip } from "@mui/material";
-import { GenericRecipeProps } from "../../../pages/";
 import { Tag } from "@mui/icons-material";
-
-interface CardProps {
-  id: number;
-  title: string;
-  tags?: [GenericRecipeProps];
-  image?: string;
-  enableButtons?: boolean;
-  handleDeleteClick?: () => void;
-  handleEditClick?: () => void;
-}
+import { CardComponentProps } from "@typedefs/core";
 
 const CardComponent = ({
   id,
@@ -28,7 +17,7 @@ const CardComponent = ({
   enableButtons,
   handleDeleteClick,
   handleEditClick,
-}: CardProps) => {
+}: CardComponentProps) => {
   return (
     <Card
       sx={{
@@ -59,8 +48,12 @@ const CardComponent = ({
         </CardContent>
         {enableButtons && (
           <CardActions>
-            <Button size="small">Delete</Button>
-            <Button size="small">Edit</Button>
+            <Button size="small" onClick={handleDeleteClick}>
+              Delete
+            </Button>
+            <Button size="small" onClick={handleEditClick}>
+              Edit
+            </Button>
           </CardActions>
         )}
       </CardActionArea>
