@@ -1,27 +1,14 @@
-interface ApiClientOptionProps {
-  method: string;
-  body?: any;
-}
+import axios, { Axios, AxiosRequestConfig } from "axios";
 
 const ApiClient = async (
   endpoint: string,
-  method = "get",
-  body?: any,
+  config?: AxiosRequestConfig,
 ) => {
-  try {
-    const options: ApiClientOptionProps = {
-      method,
-    };
 
-    if (body) options.body = body;
+  const res = await axios(process.env.API_ENDPOINT + endpoint, config);
 
-    const res = await fetch(process.env.API_ENDPOINT + endpoint, options);
-    const data = await res.json();
 
-    return data;
-  } catch (err) {
-    console.error(err);
-  }
+  return res.data;
 };
 
 export default ApiClient;

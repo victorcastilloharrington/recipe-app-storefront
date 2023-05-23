@@ -1,18 +1,20 @@
 import { Box, Button, Grid, Link, TextField, Typography } from "@mui/material";
-import { FC } from "react";
+import { FC, useState } from "react";
 import { useAuth } from "@hooks/useAuth";
 import { AuthFormProps } from "@typedefs/auth";
 
 const LoginFormComponent: FC<AuthFormProps> = ({ handleToggle }) => {
   const { login } = useAuth();
 
+  const [email, setEmail] = useState<string>();
+  const [password, setPassword] = useState<string>();
+
   const handleClick = () => {
-    login({
-      id: 1,
-      name: "Victor Castillo",
-      email: "victor@example.com",
-      authToken: "Token 1234",
-    });
+    if (email && password)
+      login({
+        email,
+        password,
+      });
   };
 
   return (
@@ -28,6 +30,10 @@ const LoginFormComponent: FC<AuthFormProps> = ({ handleToggle }) => {
             label="Email"
             autoFocus
             inputProps={{ type: "email" }}
+            value={email}
+            onChange={(e) => {
+              setEmail(e.target.value);
+            }}
           />
         </Grid>
         <Grid item xs={12}>
@@ -39,11 +45,14 @@ const LoginFormComponent: FC<AuthFormProps> = ({ handleToggle }) => {
             name="password"
             autoComplete="password"
             inputProps={{ type: "password" }}
+            value={password}
+            onChange={(e) => {
+              setPassword(e.target.value);
+            }}
           />
         </Grid>
       </Grid>
       <Button
-        type="submit"
         fullWidth
         variant="contained"
         color="secondary"

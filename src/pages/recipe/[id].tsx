@@ -26,7 +26,7 @@ export const getServerSideProps: GetServerSideProps<{
 }> = async (context) => {
   const id = context.params?.id;
 
-  const data = await ApiClient(`recipe/recipes/${id}`);
+  const data = await ApiClient(`recipe/recipes/${id}/`);
 
   return { props: { recipe: data } };
 };

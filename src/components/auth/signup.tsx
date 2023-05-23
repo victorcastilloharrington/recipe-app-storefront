@@ -25,7 +25,7 @@ const SignupFormComponent: FC<AuthFormProps> = ({ handleToggle }) => {
             required
             fullWidth
             id="name"
-            label="name"
+            label="Username"
             autoFocus
           />
         </Grid>

@@ -9,6 +9,7 @@ import MenuItem from "@mui/material/MenuItem";
 import AuthComponent from "@components/auth";
 import { SidebarProps } from "@typedefs/core";
 import { useAuth } from "@hooks/useAuth";
+import { blueGrey } from "@mui/material/colors";
 
 const Sidebar = ({
   anchorElUser,
@@ -16,6 +17,11 @@ const Sidebar = ({
   handleCloseUserMenu,
 }: SidebarProps) => {
   const { user, logout } = useAuth();
+
+  const handleLogout = () => {
+    handleCloseUserMenu();
+    logout();
+  };
 
   if (!user)
     return (
@@ -28,7 +34,17 @@ const Sidebar = ({
       <Box sx={{ flexGrow: 0 }}>
         <Tooltip title="Open settings">
           <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-            <Avatar alt={user.name} src="/static/images/avatar/1.jpg" />
+            <Avatar
+              alt={user.name}
+              sx={{
+                bgcolor: blueGrey.A700,
+                width: 30,
+                height: 30,
+                fontSize: 16,
+              }}
+            >
+              {user.name[0]}
+            </Avatar>
           </IconButton>
         </Tooltip>
         <Menu
@@ -53,7 +69,7 @@ const Sidebar = ({
           <MenuItem key="Account" onClick={handleCloseUserMenu}>
             <Typography textAlign="center">My Account</Typography>
           </MenuItem>
-          <MenuItem key="logout" onClick={logout}>
+          <MenuItem key="logout" onClick={handleLogout}>
             <Typography textAlign="center">Log Out</Typography>
           </MenuItem>
         </Menu>
