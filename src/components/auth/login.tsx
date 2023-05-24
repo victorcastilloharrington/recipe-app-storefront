@@ -1,21 +1,47 @@
-import { Box, Button, Grid, Link, TextField, Typography } from "@mui/material";
+import {
+  Alert,
+  Box,
+  Button,
+  Grid,
+  Link,
+  TextField,
+  Typography,
+} from "@mui/material";
 import { FC, useState } from "react";
 import { useAuth } from "@hooks/useAuth";
 import { AuthFormProps } from "@typedefs/auth";
+import { ValidateForm } from "../../helpers";
+import { FIELD_TYPE, FIELD_TYPE_ERRORS } from "../../constants";
 
 const LoginFormComponent: FC<AuthFormProps> = ({ handleToggle }) => {
   const { login } = useAuth();
 
   const [email, setEmail] = useState<string>();
   const [password, setPassword] = useState<string>();
+  const [formErrors, setFormErrors] = useState<string[]>();
+  const [alert, setAlert] = useState<string>();
 
   const handleClick = () => {
+    setAlert("");
+    const errors = new ValidateForm([
+      { field: "email", value: email, type: FIELD_TYPE.EMAIL },
+      {
+        field: "password",
+        value: password,
+        type: FIELD_TYPE.TEXT,
+      },
+    ]).validateFormFields();
+
+    setFormErrors(errors);
     //TODO: raise badge if error is returned
-    if (email && password)
+    if (email && password && errors.length === 0) {
       login({
         email,
         password,
+      }).then((res) => {
+        if (res?.response?.status !== 200) setAlert("Invalid Credentials.");
       });
+    }
   };
 
   return (
@@ -35,6 +61,10 @@ const LoginFormComponent: FC<AuthFormProps> = ({ handleToggle }) => {
             onChange={(e) => {
               setEmail(e.target.value);
             }}
+            error={formErrors?.includes("email")}
+            helperText={
+              formErrors?.includes("email") && FIELD_TYPE_ERRORS.EMAIL
+            }
           />
         </Grid>
         <Grid item xs={12}>
@@ -50,6 +80,10 @@ const LoginFormComponent: FC<AuthFormProps> = ({ handleToggle }) => {
             onChange={(e) => {
               setPassword(e.target.value);
             }}
+            error={formErrors?.includes("password")}
+            helperText={
+              formErrors?.includes("password") && FIELD_TYPE_ERRORS.TEXT
+            }
           />
         </Grid>
       </Grid>
@@ -68,6 +102,7 @@ const LoginFormComponent: FC<AuthFormProps> = ({ handleToggle }) => {
           Sign Up
         </Link>
       </Typography>
+      {alert && <Alert severity="error">{alert}</Alert>}
     </Box>
   );
 };
