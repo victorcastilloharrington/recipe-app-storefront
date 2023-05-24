@@ -10,6 +10,7 @@ const LoginFormComponent: FC<AuthFormProps> = ({ handleToggle }) => {
   const [password, setPassword] = useState<string>();
 
   const handleClick = () => {
+    //TODO: raise badge if error is returned
     if (email && password)
       login({
         email,

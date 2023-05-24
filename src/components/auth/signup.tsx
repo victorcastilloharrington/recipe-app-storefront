@@ -2,6 +2,8 @@ import { Box, Button, Grid, Link, TextField, Typography } from "@mui/material";
 import { FC, useState } from "react";
 import { useAuth } from "@hooks/useAuth";
 import { AuthFormProps } from "@typedefs/auth";
+import { FIELD_TYPE, FIELD_TYPE_ERRORS } from "../../constants";
+import { ValidateForm } from "../../helpers";
 
 const SignupFormComponent: FC<AuthFormProps> = ({ handleToggle }) => {
   const { signUp } = useAuth();
@@ -11,15 +13,23 @@ const SignupFormComponent: FC<AuthFormProps> = ({ handleToggle }) => {
   const [password, setPassword] = useState<string>();
   const [password2, setPassword2] = useState<string>();
 
-  const validatePassword = () =>
-    password && password2 && password === password2;
+  const [formErrors, setFormErrors] = useState<string[]>();
 
   const handleClick = () => {
-    const isValidPass = validatePassword();
+    const errors = new ValidateForm([
+      { field: "name", value: name, type: FIELD_TYPE.TEXT },
+      { field: "email", value: email, type: FIELD_TYPE.EMAIL },
+      {
+        field: "password",
+        value: password,
+        type: FIELD_TYPE.PASSWORD,
+        compareValue: password2,
+      },
+    ]).validateFormFields();
 
-    //TODO: raise alert badge
-    if (!isValidPass) console.error("Passwords do not match");
-    if (name && email && password && isValidPass)
+    setFormErrors(errors);
+
+    if (name && email && password && errors.length === 0)
       signUp({
         name,
         email,
@@ -43,6 +53,8 @@ const SignupFormComponent: FC<AuthFormProps> = ({ handleToggle }) => {
             onChange={(e) => {
               setName(e.target.value);
             }}
+            error={formErrors?.includes("name")}
+            helperText={formErrors?.includes("name") && FIELD_TYPE_ERRORS.TEXT}
           />
         </Grid>
         <Grid item xs={12}>
@@ -58,6 +70,10 @@ const SignupFormComponent: FC<AuthFormProps> = ({ handleToggle }) => {
             onChange={(e) => {
               setEmail(e.target.value);
             }}
+            error={formErrors?.includes("email")}
+            helperText={
+              formErrors?.includes("email") && FIELD_TYPE_ERRORS.EMAIL
+            }
           />
         </Grid>
       </Grid>
@@ -75,6 +91,10 @@ const SignupFormComponent: FC<AuthFormProps> = ({ handleToggle }) => {
             onChange={(e) => {
               setPassword(e.target.value);
             }}
+            error={formErrors?.includes("password")}
+            helperText={
+              formErrors?.includes("password") && FIELD_TYPE_ERRORS.PASSWORD
+            }
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -90,6 +110,10 @@ const SignupFormComponent: FC<AuthFormProps> = ({ handleToggle }) => {
             onChange={(e) => {
               setPassword2(e.target.value);
             }}
+            error={formErrors?.includes("password")}
+            helperText={
+              formErrors?.includes("password") && FIELD_TYPE_ERRORS.PASSWORD
+            }
           />
         </Grid>
       </Grid>

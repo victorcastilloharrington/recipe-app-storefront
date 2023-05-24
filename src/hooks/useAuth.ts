@@ -13,7 +13,8 @@ export const useAuth = () => {
     if (user) {
       addUser(JSON.parse(user));
     }
-  }, []);
+
+  }, []); // eslint-disable-line
 
   const login = async (userFormLogin: UserFormLogin) => {
     try {

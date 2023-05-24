@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { AuthContext } from "../context/authContext";
 import { useLocalStorage } from "./useLocalStorage";
-import { User, UserFormSignup } from "../typedefs/user";
+import { User } from "../typedefs/user";
 
 
 
