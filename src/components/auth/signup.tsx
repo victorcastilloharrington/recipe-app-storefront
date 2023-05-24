@@ -1,18 +1,30 @@
 import { Box, Button, Grid, Link, TextField, Typography } from "@mui/material";
-import { FC } from "react";
+import { FC, useState } from "react";
 import { useAuth } from "@hooks/useAuth";
 import { AuthFormProps } from "@typedefs/auth";
 
 const SignupFormComponent: FC<AuthFormProps> = ({ handleToggle }) => {
-  const { login } = useAuth();
+  const { signUp } = useAuth();
+
+  const [name, setName] = useState<string>();
+  const [email, setEmail] = useState<string>();
+  const [password, setPassword] = useState<string>();
+  const [password2, setPassword2] = useState<string>();
+
+  const validatePassword = () =>
+    password && password2 && password === password2;
 
   const handleClick = () => {
-    login({
-      id: 1,
-      name: "Victor Castillo",
-      email: "victor@example.com",
-      authToken: "Token 1234",
-    });
+    const isValidPass = validatePassword();
+
+    //TODO: raise alert badge
+    if (!isValidPass) console.error("Passwords do not match");
+    if (name && email && password && isValidPass)
+      signUp({
+        name,
+        email,
+        password,
+      });
   };
 
   return (
@@ -27,6 +39,10 @@ const SignupFormComponent: FC<AuthFormProps> = ({ handleToggle }) => {
             id="name"
             label="Username"
             autoFocus
+            value={name}
+            onChange={(e) => {
+              setName(e.target.value);
+            }}
           />
         </Grid>
         <Grid item xs={12}>
@@ -38,6 +54,10 @@ const SignupFormComponent: FC<AuthFormProps> = ({ handleToggle }) => {
             id="email"
             label="Email"
             inputProps={{ type: "email" }}
+            value={email}
+            onChange={(e) => {
+              setEmail(e.target.value);
+            }}
           />
         </Grid>
       </Grid>
@@ -51,6 +71,10 @@ const SignupFormComponent: FC<AuthFormProps> = ({ handleToggle }) => {
             id="password"
             label="Password"
             inputProps={{ type: "password" }}
+            value={password}
+            onChange={(e) => {
+              setPassword(e.target.value);
+            }}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -62,6 +86,10 @@ const SignupFormComponent: FC<AuthFormProps> = ({ handleToggle }) => {
             id="password2"
             label="Repeat Password"
             inputProps={{ type: "password" }}
+            value={password2}
+            onChange={(e) => {
+              setPassword2(e.target.value);
+            }}
           />
         </Grid>
       </Grid>

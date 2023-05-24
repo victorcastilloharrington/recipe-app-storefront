@@ -15,5 +15,4 @@ export interface UserFormLogin {
 
 export interface UserFormSignup extends UserBase {
   password: string
-  password2: string
 }

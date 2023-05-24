@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useUser } from "./useUser";
 import { useLocalStorage } from "./useLocalStorage";
-import { UserFormLogin } from "../typedefs/user";
+import { UserFormLogin, UserFormSignup } from "../typedefs/user";
 import ApiClient from "../services/api";
 
 export const useAuth = () => {
@@ -13,7 +13,7 @@ export const useAuth = () => {
     if (user) {
       addUser(JSON.parse(user));
     }
-  }, [addUser, getItem]);
+  }, []);
 
   const login = async (userFormLogin: UserFormLogin) => {
     try {
@@ -33,9 +33,27 @@ export const useAuth = () => {
     }
   };
 
+  const signUp = async (userFormSignup: UserFormSignup) => {
+    try {
+      const user = await ApiClient('user/create/', { method: 'post', data: userFormSignup })
+
+      if (user) {
+        const tokenRes = await ApiClient('user/token/', { method: 'post', data: userFormSignup })
+        const authToken = `Token ${tokenRes.token}`
+
+        if (user)
+          addUser({ ...user, authToken });
+      }
+
+    } catch (err: any) {
+      //TODO: raise alert on error
+      console.error(err)
+    }
+  };
+
   const logout = () => {
     removeUser();
   };
 
-  return { user, login, logout };
+  return { user, login, signUp, logout };
 };
