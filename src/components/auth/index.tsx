@@ -1,6 +1,6 @@
 import Modal from "@components/core/modal";
 import { FC, useState } from "react";
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import { useModal } from "@hooks/useModal";
 import { AccountCircle } from "@mui/icons-material";
 import LoginFormComponent from "./login";

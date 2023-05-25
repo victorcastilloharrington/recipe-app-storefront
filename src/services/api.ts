@@ -1,4 +1,4 @@
-import axios, { Axios, AxiosRequestConfig } from "axios";
+import axios, { AxiosRequestConfig } from "axios";
 
 const ApiClient = async (
   endpoint: string,

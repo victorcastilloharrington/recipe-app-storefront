@@ -10,7 +10,6 @@ import { Tag } from "@mui/icons-material";
 import { CardComponentProps } from "@typedefs/core";
 
 const CardComponent = ({
-  id,
   title,
   tags,
   image,

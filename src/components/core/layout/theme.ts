@@ -1,6 +1,6 @@
 import { Radio_Canada } from 'next/font/google';
 import { createTheme } from '@mui/material/styles';
-import { red, orange, blueGrey, lightGreen, lightBlue, blue, grey } from '@mui/material/colors';
+import { red, orange, blueGrey, lightGreen } from '@mui/material/colors';
 
 export const radioCanada = Radio_Canada({
   weight: ['300', '400', '500', '700'],

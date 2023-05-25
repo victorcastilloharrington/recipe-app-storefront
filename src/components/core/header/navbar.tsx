@@ -9,8 +9,6 @@ import MenuItem from "@mui/material/MenuItem";
 import Logo from "./logo";
 import { DesktopNavBarProps, MobileNavBarProps } from "@typedefs/core";
 
-const pages = ["Ingredients", "Tags"];
-
 export const DesktopNavBar = ({
   handleIngredientsModal,
   handleTagsModal,
