@@ -10,12 +10,14 @@ import AuthComponent from "@components/auth";
 import { SidebarProps } from "@typedefs/core";
 import { useAuth } from "@hooks/useAuth";
 import { blueGrey } from "@mui/material/colors";
+import { useRouter } from "next/router";
 
 const Sidebar = ({
   anchorElUser,
   handleOpenUserMenu,
   handleCloseUserMenu,
 }: SidebarProps) => {
+  const router = useRouter();
   const { user, logout } = useAuth();
 
   const handleLogout = () => {
@@ -63,10 +65,10 @@ const Sidebar = ({
           open={Boolean(anchorElUser)}
           onClose={handleCloseUserMenu}
         >
-          <MenuItem key="recipes" onClick={handleCloseUserMenu}>
+          <MenuItem key="recipes" onClick={() => router.push("/user/recipes")}>
             <Typography textAlign="center">My Recipes</Typography>
           </MenuItem>
-          <MenuItem key="Account" onClick={handleCloseUserMenu}>
+          <MenuItem key="account" onClick={() => router.push("/user")}>
             <Typography textAlign="center">My Account</Typography>
           </MenuItem>
           <MenuItem key="logout" onClick={handleLogout}>
