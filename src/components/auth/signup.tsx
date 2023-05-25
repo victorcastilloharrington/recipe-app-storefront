@@ -5,7 +5,7 @@ import { AuthFormProps } from "@typedefs/auth";
 import { FIELD_TYPE, FIELD_TYPE_ERRORS } from "../../constants";
 import { ValidateForm } from "../../helpers";
 
-const SignupFormComponent: FC<AuthFormProps> = ({ handleToggle }) => {
+const SignupFormComponent: FC<AuthFormProps> = ({ handleToggle, setAlert }) => {
   const { signUp } = useAuth();
 
   const [name, setName] = useState<string>();
@@ -16,6 +16,7 @@ const SignupFormComponent: FC<AuthFormProps> = ({ handleToggle }) => {
   const [formErrors, setFormErrors] = useState<string[]>();
 
   const handleClick = () => {
+    setAlert("");
     const errors = new ValidateForm([
       { field: "name", value: name, type: FIELD_TYPE.TEXT },
       { field: "email", value: email, type: FIELD_TYPE.EMAIL },
@@ -34,6 +35,9 @@ const SignupFormComponent: FC<AuthFormProps> = ({ handleToggle }) => {
         name,
         email,
         password,
+      }).then((res) => {
+        if (res?.response?.status !== 201)
+          setAlert("Unable to complete registration. Please try again later.");
       });
   };
 

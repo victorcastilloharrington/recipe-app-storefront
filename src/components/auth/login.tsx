@@ -1,25 +1,16 @@
-import {
-  Alert,
-  Box,
-  Button,
-  Grid,
-  Link,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { Box, Button, Grid, Link, TextField, Typography } from "@mui/material";
 import { FC, useState } from "react";
 import { useAuth } from "@hooks/useAuth";
 import { AuthFormProps } from "@typedefs/auth";
 import { ValidateForm } from "../../helpers";
 import { FIELD_TYPE, FIELD_TYPE_ERRORS } from "../../constants";
 
-const LoginFormComponent: FC<AuthFormProps> = ({ handleToggle }) => {
+const LoginFormComponent: FC<AuthFormProps> = ({ handleToggle, setAlert }) => {
   const { login } = useAuth();
 
   const [email, setEmail] = useState<string>();
   const [password, setPassword] = useState<string>();
   const [formErrors, setFormErrors] = useState<string[]>();
-  const [alert, setAlert] = useState<string>();
 
   const handleClick = () => {
     setAlert("");
@@ -33,7 +24,6 @@ const LoginFormComponent: FC<AuthFormProps> = ({ handleToggle }) => {
     ]).validateFormFields();
 
     setFormErrors(errors);
-    //TODO: raise badge if error is returned
     if (email && password && errors.length === 0) {
       login({
         email,
@@ -102,7 +92,6 @@ const LoginFormComponent: FC<AuthFormProps> = ({ handleToggle }) => {
           Sign Up
         </Link>
       </Typography>
-      {alert && <Alert severity="error">{alert}</Alert>}
     </Box>
   );
 };

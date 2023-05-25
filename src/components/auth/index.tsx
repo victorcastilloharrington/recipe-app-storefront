@@ -1,6 +1,6 @@
 import Modal from "@components/core/modal";
 import { FC, useState } from "react";
-import { Box, Button } from "@mui/material";
+import { Alert, Box, Button } from "@mui/material";
 import { useModal } from "@hooks/useModal";
 import { AccountCircle } from "@mui/icons-material";
 import LoginFormComponent from "./login";
@@ -8,14 +8,18 @@ import SignupFormComponent from "./signup";
 
 const AuthComponent: FC = () => {
   const [openModal, toggleModal] = useModal();
-  const [isSignup, sestIsSignup] = useState<boolean>(false);
-
+  const [isSignup, setIsSignup] = useState<boolean>(false);
+  const [alert, setAlert] = useState<string>();
   const handleModal = () => {
-    sestIsSignup(false);
+    setIsSignup(false);
     toggleModal();
   };
 
-  const handleToggle = () => sestIsSignup(!isSignup);
+  const handleToggle = () => {
+    setAlert("");
+    setIsSignup(!isSignup);
+  };
+
   return (
     <Box>
       <Button
@@ -32,10 +36,14 @@ const AuthComponent: FC = () => {
         handleClose={toggleModal}
       >
         {!isSignup ? (
-          <LoginFormComponent handleToggle={handleToggle} />
+          <LoginFormComponent handleToggle={handleToggle} setAlert={setAlert} />
         ) : (
-          <SignupFormComponent handleToggle={handleToggle} />
+          <SignupFormComponent
+            handleToggle={handleToggle}
+            setAlert={setAlert}
+          />
         )}
+        {alert && <Alert severity="error">{alert}</Alert>}
       </Modal>
     </Box>
   );

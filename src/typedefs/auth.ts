@@ -6,4 +6,5 @@ export interface GenericModalProps {
 
 export interface AuthFormProps {
   handleToggle: () => void
+  setAlert: (msg: string) => void
 }

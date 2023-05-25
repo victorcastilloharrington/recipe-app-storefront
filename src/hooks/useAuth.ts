@@ -29,7 +29,6 @@ export const useAuth = () => {
       }
 
     } catch (err: any) {
-      //TODO: raise alert on error
       console.error(err)
       return err
     }
@@ -48,8 +47,8 @@ export const useAuth = () => {
       }
 
     } catch (err: any) {
-      //TODO: raise alert on error
       console.error(err)
+      return err
     }
   };
 
