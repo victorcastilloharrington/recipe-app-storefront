@@ -1,13 +1,13 @@
 import { useContext } from "react";
 import { AuthContext } from "../context/authContext";
-import { useLocalStorage } from "./useLocalStorage";
+import { useNookies } from "./useNookies";
 import { User } from "../typedefs/user";
 
 
 
 export const useUser = () => {
   const { user, setUser } = useContext(AuthContext);
-  const { setItem } = useLocalStorage();
+  const { setItem } = useNookies();
 
   const addUser = (user: User) => {
     setUser(user);

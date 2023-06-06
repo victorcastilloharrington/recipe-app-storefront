@@ -1,12 +1,12 @@
 import { useEffect } from "react";
 import { useUser } from "./useUser";
-import { useLocalStorage } from "./useLocalStorage";
+import { useNookies } from "./useNookies";
 import { UserFormLogin, UserFormSignup } from "../typedefs/user";
 import ApiClient from "../services/api";
 
 export const useAuth = () => {
   const { user, addUser, removeUser } = useUser();
-  const { getItem } = useLocalStorage();
+  const { getItem } = useNookies();
 
   useEffect(() => {
     const user = getItem("user");
