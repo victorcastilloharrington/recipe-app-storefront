@@ -36,7 +36,6 @@ const UserDataFormComponent: FC<UserFormUpdateComponent> = ({
         },
         user.authToken
       ).then((res) => {
-        console.log(res);
         if (res?.response?.status && res?.response?.status !== 200)
           setAlert("Unable to complete update. Please try again later.");
         else setSuccess("User details updated successfully");
