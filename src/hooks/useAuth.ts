@@ -3,9 +3,11 @@ import { useUser } from "./useUser";
 import { useNookies } from "./useNookies";
 import { UserFormLogin, UserFormSignup, UserFormUpdate } from "../typedefs/user";
 import ApiClient from "../services/api";
+import { useRouter } from "next/router";
 
 export const useAuth = () => {
   const { user, addUser, removeUser } = useUser();
+  const router = useRouter();
   const { getItem } = useNookies();
 
   useEffect(() => {
@@ -66,6 +68,7 @@ export const useAuth = () => {
 
   const logout = () => {
     removeUser();
+    router.push('/');
   };
 
   return { user, login, signUp, logout, update };
