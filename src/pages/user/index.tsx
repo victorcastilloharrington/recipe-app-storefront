@@ -10,7 +10,7 @@ const UserPage = ({
   return (
     <Box>
       <Container maxWidth="md">
-        <UserDetailsComponent />
+        <UserDetailsComponent user={user} />
       </Container>
     </Box>
   );

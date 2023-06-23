@@ -4,7 +4,10 @@ export interface GenericModalProps {
   title: string
 }
 
-export interface AuthFormProps {
-  handleToggle: () => void
+export interface GenericFormProps {
   setAlert: (msg: string) => void
+}
+
+export interface AuthFormProps extends GenericFormProps {
+  handleToggle: () => void
 }

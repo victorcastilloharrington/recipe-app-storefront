@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useUser } from "./useUser";
 import { useNookies } from "./useNookies";
-import { UserFormLogin, UserFormSignup } from "../typedefs/user";
+import { UserFormLogin, UserFormSignup, UserFormUpdate } from "../typedefs/user";
 import ApiClient from "../services/api";
 
 export const useAuth = () => {
@@ -52,9 +52,21 @@ export const useAuth = () => {
     }
   };
 
+  const update = async (userFormUpdate: UserFormUpdate, authToken: string) => {
+    try {
+      const res = await ApiClient('user/me/', { method: 'patch', data: userFormUpdate, headers: { Authorization: authToken } })
+      if (res && user)
+        addUser({ ...user, ...res });
+
+    } catch (err: any) {
+      console.error(err)
+      return err
+    }
+  };
+
   const logout = () => {
     removeUser();
   };
 
-  return { user, login, signUp, logout };
+  return { user, login, signUp, logout, update };
 };
